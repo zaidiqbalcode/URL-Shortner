@@ -54,7 +54,7 @@ function App() {
     if (!token) return
     
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/urls`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/urls`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -71,7 +71,7 @@ function App() {
     setAuthError('')
 
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/auth/${mode}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/${mode}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

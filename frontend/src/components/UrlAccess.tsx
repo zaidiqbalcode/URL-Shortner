@@ -23,7 +23,7 @@ export default function UrlAccess({ shortUrl }: UrlAccessProps) {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/${shortUrl}`);
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${shortUrl}`);
       
       if (response.ok) {
         const data = await response.json();

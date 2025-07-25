@@ -29,7 +29,7 @@ export default function UrlShortener({ onUrlShortened, isLoading, setIsLoading, 
         requestBody.password = password;
       }
 
-      const response = await fetch(`${process.env.BACKEND_URL}/api/shorten`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/shorten`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

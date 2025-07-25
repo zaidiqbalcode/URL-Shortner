@@ -22,7 +22,7 @@ export default function PasswordModal({ isOpen, onClose, shortUrl, onSuccess }: 
     setError('');
 
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/api/verify-password`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/verify-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

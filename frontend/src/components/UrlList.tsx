@@ -26,7 +26,7 @@ export default function UrlList({ urls, onUrlsChange }: UrlListProps) {
 
   const copyToClipboard = async (url: string) => {
     try {
-      await navigator.clipboard.writeText(`${process.env.BACKEND_URL}/${url}`);
+      await navigator.clipboard.writeText(`${import.meta.env.VITE_BACKEND_URL}/${url}`);
       setCopiedUrl(url);
       setTimeout(() => setCopiedUrl(null), 2000);
     } catch (error) {
@@ -55,7 +55,7 @@ export default function UrlList({ urls, onUrlsChange }: UrlListProps) {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.BACKEND_URL}/api/toggle/${urlId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/toggle/${urlId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -85,7 +85,7 @@ export default function UrlList({ urls, onUrlsChange }: UrlListProps) {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.BACKEND_URL}/api/reset-attempts/${urlId}`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/reset-attempts/${urlId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -202,7 +202,7 @@ export default function UrlList({ urls, onUrlsChange }: UrlListProps) {
                 <div className="short-url-section">
                   <div className="short-url-container">
                     <a 
-                      href={`${process.env.BACKEND_URL}/${url.shortUrl}`} 
+                      href={`${import.meta.env.VITE_BACKEND_URL}/${url.shortUrl}`} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="short-url-link"
@@ -212,9 +212,9 @@ export default function UrlList({ urls, onUrlsChange }: UrlListProps) {
                         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                       {
-                        process.env.BACKEND_URL?.includes('localhost') ? 
-                          `${process.env.BACKEND_URL?.replace('http://', '')}/${url.shortUrl}` : 
-                          `${process.env.BACKEND_URL?.replace('https://', '')}/${url.shortUrl}`
+                        import.meta.env.VITE_BACKEND_URL?.includes('localhost') ? 
+                          `${import.meta.env.VITE_BACKEND_URL?.replace('http://', '')}/${url.shortUrl}` : 
+                          `${import.meta.env.VITE_BACKEND_URL?.replace('https://', '')}/${url.shortUrl}`
                       }
                     </a>
                     <button 
@@ -242,7 +242,7 @@ export default function UrlList({ urls, onUrlsChange }: UrlListProps) {
                   </div>
                   <div className="short-url-actions">
                     <button 
-                      onClick={() => setQrModalUrl(`${process.env.BACKEND_URL}/${url.shortUrl}`)}
+                      onClick={() => setQrModalUrl(`${import.meta.env.VITE_BACKEND_URL}/${url.shortUrl}`)}
                       className="qr-btn"
                       title="Generate QR Code"
                     >
