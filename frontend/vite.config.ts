@@ -1,17 +1,24 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
+export default defineConfig(() => {
   return {
     plugins: [react()],
     define: {
-      'process.env': env
+      'process.env.VITE_BACKEND_URL': JSON.stringify(process.env.VITE_BACKEND_URL)
     },
     build: {
       outDir: 'dist',
       emptyOutDir: true
+    },
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:5000',
+          changeOrigin: true
+        }
+      }
     }
   }
 })
