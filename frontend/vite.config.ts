@@ -8,6 +8,10 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     define: {
       'process.env': env
+    },
+    build: {
+      outDir: 'dist',
+      emptyOutDir: true
     }
   }
 })
